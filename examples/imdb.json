@@ -1,0 +1,23 @@
+{
+	"url" : "http://www.imdb.com/find?q=${movie}&s=tt&ttype=ft&ref_=fn_ft",
+	"headers": {
+		"Accept-Language": "en-US,en;q=0.8,it;q=0.6,ro;q=0.4"
+	},
+	"collections" : [{
+		"name" : "movies",
+		"query": "$('table.findList tr')",
+		"fields": {
+			"title" : "find('td.result_text a').text()",
+			"year" : "find('td.result_text').text().match(/\\((\\d{4})\\)/)[1]",
+			"poster" : "find('td.primary_photo img').attr('src')",
+			"details": {
+				"url" : "find('td.result_text a').attr('href').replace('/','http://www.imdb.com/')",
+				"group": false,
+				"fields": {
+					"rating": "$('#overview-top .star-box-giga-star').text().trim()",
+					"duration": "$('#overview-top time').text().trim()"				
+				}
+			}
+		}
+	}]
+}
