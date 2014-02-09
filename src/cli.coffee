@@ -1,5 +1,3 @@
-`#!/usr/bin/env node`
-
 skrap    = require './skrap'
 fs       = require "fs"
 optimist = require "optimist"

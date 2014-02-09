@@ -9,7 +9,8 @@ crawlers = []
 module.exports = skrap = (recipePath, params, callback) ->
   recipe = readRecipe(recipePath)
   url = recipe.url
-  headers[header] = value for header, value of recipe.headers
+  if recipe.headers?
+    headers[header] = value for header, value of recipe.headers
 
   if params?
     for key, value of params

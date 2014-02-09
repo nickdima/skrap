@@ -1,0 +1,147 @@
+{
+    "movies": [
+        {
+            "title": "Spider-Man",
+            "year": "2002",
+            "poster": "http://ia.media-imdb.com/images/M/MV5BMzk3MTE5MDU5NV5BMl5BanBnXkFtZTYwMjY3NTY3._V1_SX32_CR0,0,32,44_.jpg",
+            "details": {
+                "rating": "7.3",
+                "duration": "121 min"
+            }
+        },
+        {
+            "title": "The Amazing Spider-Man 2",
+            "year": "2014",
+            "poster": "http://ia.media-imdb.com/images/M/MV5BMTg3MzgzOTg3Nl5BMl5BanBnXkFtZTgwOTgxNjk4MDE@._V1_SX32_CR0,0,32,44_.jpg",
+            "details": {
+                "rating": "",
+                "duration": ""
+            }
+        },
+        {
+            "title": "The Amazing Spider-Man",
+            "year": "2012",
+            "poster": "http://ia.media-imdb.com/images/M/MV5BMjMyOTM4MDMxNV5BMl5BanBnXkFtZTcwNjIyNzExOA@@._V1_SX32_CR0,0,32,44_.jpg",
+            "details": {
+                "rating": "7.2",
+                "duration": "136 min"
+            }
+        },
+        {
+            "title": "Spider-Man 2",
+            "year": "2004",
+            "poster": "http://ia.media-imdb.com/images/M/MV5BMjE1ODcyODYxMl5BMl5BanBnXkFtZTcwNjA1NDE3MQ@@._V1_SX32_CR0,0,32,44_.jpg",
+            "details": {
+                "rating": "7.4",
+                "duration": "127 min"
+            }
+        },
+        {
+            "title": "Spider-Man 3",
+            "year": "2007",
+            "poster": "http://ia.media-imdb.com/images/M/MV5BODUwMDc5Mzc5M15BMl5BanBnXkFtZTcwNDgzOTY0MQ@@._V1_SX32_CR0,0,32,44_.jpg",
+            "details": {
+                "rating": "6.3",
+                "duration": "139 min"
+            }
+        },
+        {
+            "title": "The Amazing Spider-Man 3",
+            "year": "2016",
+            "poster": "http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/film-3119741174._V379391527_.png",
+            "details": {
+                "rating": "",
+                "duration": ""
+            }
+        },
+        {
+            "title": "The Amazing Spider-Man 4",
+            "year": "2018",
+            "poster": "http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/film-3119741174._V379391527_.png",
+            "details": {
+                "rating": "",
+                "duration": ""
+            }
+        },
+        {
+            "title": "Spider-Man: Wieczny Bohater",
+            "year": "2014",
+            "poster": "http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/film-3119741174._V379391527_.png",
+            "details": {
+                "rating": "",
+                "duration": "30 min"
+            }
+        },
+        {
+            "title": "Spider Man: Lost Cause",
+            "poster": "http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/film-3119741174._V379391527_.png",
+            "details": {
+                "rating": "",
+                "duration": "120 min"
+            }
+        },
+        {
+            "title": "Rite of Passage: The Amazing Spider-Man Reborn",
+            "year": "2012",
+            "poster": "http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/film-3119741174._V379391527_.png",
+            "details": {
+                "rating": "8.4",
+                "duration": "90 min"
+            }
+        },
+        {
+            "title": "The Sensational Spider-Man",
+            "year": "2014",
+            "poster": "http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/film-3119741174._V379391527_.png",
+            "details": {
+                "rating": "",
+                "duration": ""
+            }
+        },
+        {
+            "title": "The Specials",
+            "year": "2000",
+            "poster": "http://ia.media-imdb.com/images/M/MV5BMTgzMTI5MDYwM15BMl5BanBnXkFtZTcwNDk0MzEyMQ@@._V1_SX32_CR0,0,32,44_.jpg",
+            "details": {
+                "rating": "6.1",
+                "duration": "82 min"
+            }
+        },
+        {
+            "title": "Spider Man",
+            "year": "1966",
+            "poster": "http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/film-3119741174._V379391527_.png",
+            "details": {
+                "rating": "5.1",
+                "duration": ""
+            }
+        },
+        {
+            "title": "Three Giant Men",
+            "year": "1973",
+            "poster": "http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/film-3119741174._V379391527_.png",
+            "details": {
+                "rating": "5.1",
+                "duration": "81 min"
+            }
+        },
+        {
+            "title": "Satsujinki: Kumo-otoko",
+            "year": "1958",
+            "poster": "http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/film-3119741174._V379391527_.png",
+            "details": {
+                "rating": "",
+                "duration": ""
+            }
+        },
+        {
+            "title": "La saboterie à la main",
+            "year": "1937",
+            "poster": "http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/film-3119741174._V379391527_.png",
+            "details": {
+                "rating": "",
+                "duration": ""
+            }
+        }
+    ]
+}
