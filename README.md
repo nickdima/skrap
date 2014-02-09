@@ -23,7 +23,7 @@ skrap(recipePath, {param: 'value'}, function(data) {
 ## Documentation
 
 ### Create a recipe
-A recipe is just a JSON file that contains rules for scraping the site you want. Here's a simple example:
+A recipe is just a JSON file that contains rules for scraping a web page. Here's a simple example:
 
 ```json
 {
@@ -44,7 +44,7 @@ The recipe makes use of CSS selectors for targeting the pieces of data that need
 
 #### Brakedown of a simple recipe file
 
-* `url` - the url of the page that needs to pe scraped, can contain multiple placeholder in the form of `${param_name}` for paramters that can be passed from the command line or programtically in node.js
+* `url` - the url of the page that needs to pe scraped, can contain multiple placeholders in the form of `${param_name}` for paramters that can be passed from the command line or programtically in node.js
 * `collections` - an array of objects that describe one or more collections (lists of data) to be parsed from the page
     - `name` - the collection's name for grouping the results in the output
     - `query` - the selector function that should return an array of objects from which to build the collection
