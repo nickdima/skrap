@@ -31,37 +31,147 @@
         <hr>
 
         <section id="main_content">
-          <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+          <h1>
+<a name="skrap" class="anchor" href="#skrap"><span class="octicon octicon-link"></span></a>skrap</h1>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p><strong>Skrap</strong> is a command line utility and node.js module for easily scraping web pages by providing <a href="#create-a-recipe">json recipes</a>.</p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+<h2>
+<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting Started</h2>
+
+<p>Install the module with: <code>npm install skrap</code></p>
+
+<h3>
+<a name="use-it-from-the-command-line" class="anchor" href="#use-it-from-the-command-line"><span class="octicon octicon-link"></span></a>Use it from the command line</h3>
+
+<pre><code>skrap recipe.json param1=value param2=value ... [options]
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<h3>
+<a name="use-it-in-nodejs" class="anchor" href="#use-it-in-nodejs"><span class="octicon octicon-link"></span></a>Use it in node.js</h3>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">skrap</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'skrap'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">recipePath</span> <span class="o">=</span> <span class="s2">"./recipe.json"</span><span class="p">;</span>
+
+<span class="nx">skrap</span><span class="p">(</span><span class="nx">recipePath</span><span class="p">,</span> <span class="p">{</span><span class="nx">param</span><span class="o">:</span> <span class="s1">'value'</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">})</span>
+</pre></div>
+
+<h2>
+<a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h2>
 
 <h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<a name="create-a-recipe" class="anchor" href="#create-a-recipe"><span class="octicon octicon-link"></span></a>Create a recipe</h3>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<p>A recipe is just a JSON file that contains rules for scraping a web page. Here's a simple example:</p>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<div class="highlight highlight-json"><pre><span class="p">{</span>
+    <span class="nt">"url"</span> <span class="p">:</span> <span class="s2">"http://www.imdb.com/find?q=${movie}&amp;s=tt&amp;ttype=ft&amp;ref_=fn_ft"</span><span class="p">,</span>
+    <span class="nt">"collections"</span> <span class="p">:</span> <span class="p">[{</span>
+        <span class="nt">"name"</span> <span class="p">:</span> <span class="s2">"movies"</span><span class="p">,</span>
+        <span class="nt">"query"</span><span class="p">:</span> <span class="s2">"$('table.findList tr')"</span><span class="p">,</span>
+        <span class="nt">"fields"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">"title"</span> <span class="p">:</span> <span class="s2">"find('td.result_text a').text()"</span><span class="p">,</span>
+            <span class="nt">"year"</span> <span class="p">:</span> <span class="s2">"find('td.result_text').text().match(/\\((\\d{4})\\)/)[1]"</span><span class="p">,</span>
+            <span class="nt">"poster"</span> <span class="p">:</span> <span class="s2">"find('td.primary_photo img').attr('src')"</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">}]</span>
+<span class="p">}</span>
+</pre></div>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<p>The recipe makes use of CSS selectors for targeting the pieces of data that needs to be scraped. <strong>Skrap</strong> depends on the <a href="https://github.com/MatthewMueller/cheerio"><code>cheerio</code></a> node.js module for querying the DOM, which <a href="https://github.com/MatthewMueller/cheerio#selectors">selector's implementation</a> is nearly identical to jQuery's, so the API is very similar.</p>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<h4>
+<a name="brakedown-of-a-simple-recipe-file" class="anchor" href="#brakedown-of-a-simple-recipe-file"><span class="octicon octicon-link"></span></a>Brakedown of a simple recipe file</h4>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<ul>
+<li>
+<code>url</code> - the url of the page that needs to pe scraped, can contain multiple placeholders in the form of <code>${param_name}</code> for paramters that can be passed from the command line or programtically in node.js</li>
+<li>
+<code>collections</code> - an array of objects that describe one or more collections (lists of data) to be parsed from the page
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<ul>
+<li>
+<code>name</code> - the collection's name for grouping the results in the output</li>
+<li>
+<code>query</code> - the selector function that should return an array of objects from which to build the collection</li>
+<li>
+<code>fields</code> - pairs of data field names and function calls to be applied on the queried objects for retriving the pieces of data needed</li>
+</ul>
+</li>
+</ul><p>Running <code>skrap</code> with the above example and passing the parameter <code>movie=spider-man</code> will generate <a href="https://gist.github.com/nickdima/8898038">this JSON file</a></p>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<h4>
+<a name="page-crawling-and-advanced-options" class="anchor" href="#page-crawling-and-advanced-options"><span class="octicon octicon-link"></span></a>Page crawling and advanced options</h4>
+
+<p>Here's a more complex example:</p>
+
+<div class="highlight highlight-json"><pre><span class="p">{</span>
+    <span class="nt">"url"</span> <span class="p">:</span> <span class="s2">"http://www.imdb.com/find?q=${movie}&amp;s=tt&amp;ttype=ft&amp;ref_=fn_ft"</span><span class="p">,</span>
+    <span class="nt">"headers"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">"Accept-Language"</span><span class="p">:</span> <span class="s2">"en-US,en;q=0.8,it;q=0.6,ro;q=0.4"</span>
+    <span class="p">},</span>
+    <span class="nt">"collections"</span> <span class="p">:</span> <span class="p">[{</span>
+        <span class="nt">"name"</span> <span class="p">:</span> <span class="s2">"movies"</span><span class="p">,</span>
+        <span class="nt">"query"</span><span class="p">:</span> <span class="s2">"$('table.findList tr')"</span><span class="p">,</span>
+        <span class="nt">"fields"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">"title"</span> <span class="p">:</span> <span class="s2">"find('td.result_text a').text()"</span><span class="p">,</span>
+            <span class="nt">"year"</span> <span class="p">:</span> <span class="s2">"find('td.result_text').text().match(/\\((\\d{4})\\)/)[1]"</span><span class="p">,</span>
+            <span class="nt">"poster"</span> <span class="p">:</span> <span class="s2">"find('td.primary_photo img').attr('src')"</span><span class="p">,</span>
+            <span class="nt">"details"</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">"url"</span> <span class="p">:</span> <span class="s2">"find('td.result_text a').attr('href').replace('/','http://www.imdb.com/')"</span><span class="p">,</span>
+                <span class="nt">"group"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+                <span class="nt">"fields"</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="nt">"rating"</span><span class="p">:</span> <span class="s2">"$('#overview-top .star-box-giga-star').text().trim()"</span><span class="p">,</span>
+                    <span class="nt">"duration"</span><span class="p">:</span> <span class="s2">"$('#overview-top time').text().trim()"</span>             
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}]</span>
+<span class="p">}</span>
+</pre></div>
+
+<p><strong>Optional fields:</strong></p>
+
+<ul>
+<li>
+<code>headers</code> - key, value pairs of http headers to be passed when making the requests for the pages to be scraped</li>
+</ul><p><strong>Page crawling</strong></p>
+
+<p><strong>Skrap</strong> has basic support for one level deep page crawling. The way it works is by provinding an object with crawling instructions instead of just a selector for a field name.</p>
+
+<ul>
+<li>
+<code>url</code> - the url of the page that needs to be crawled, a function call simmilar to the ones for retriving the pieces of data</li>
+<li>
+<code>group</code> - a boolean value for specifing if the crawled data should be grouped under an object (using the parent field name) or attached to the main object. Defaults to <code>true</code>
+</li>
+<li>
+<code>fields</code> - pairs of data field names and selector functions for retriving the pieces of data needed</li>
+</ul><p>In cases when you need to crawl a page for just a single piece of data, there's also a simplified syntax:</p>
+
+<div class="highlight highlight-json"><pre><span class="s2">"rating"</span><span class="err">:</span> <span class="p">{</span>
+    <span class="nt">"url"</span> <span class="p">:</span> <span class="s2">"find('td.result_text a').attr('href').replace('/','http://www.imdb.com/')"</span><span class="p">,</span>
+    <span class="nt">"query"</span><span class="p">:</span> <span class="s2">"$('#overview-top .star-box-giga-star').text().trim()"</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2>
+<a name="examples" class="anchor" href="#examples"><span class="octicon octicon-link"></span></a>Examples</h2>
+
+<p>See the <a href="https://github.com/nickdima/skrap/tree/master/examples">/examples</a> folder</p>
+
+<h2>
+<a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h2>
+
+<p>In lieu of a formal styleguide, take care to maintain the existing coding style.</p>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>Copyright (c) 2014 Nick Dima<br>
+Licensed under the MIT license.</p>
         </section>
 
         <footer>
