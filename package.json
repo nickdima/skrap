@@ -2,7 +2,7 @@
   "name": "skrap",
   "description": "Easily scrap web pages by providing json recipes",
   "version": "0.1.1",
-  "homepage": "https://github.com/nickdima/skrap",
+  "homepage": "http://nickdima.github.io/skrap/",
   "author": {
     "name": "Nick Dima",
     "email": "nick.dima@gmail.com"

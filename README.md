@@ -105,6 +105,11 @@ In cases when you need to crawl a page for just a single piece of data, there's 
 ## Examples
 See the [/examples](https://github.com/nickdima/skrap/tree/master/examples) folder
 
+## TODOS
+* Create tests
+* Use a build tool like grunt or gulp
+* Make it work in the browser(?)
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style.
 
