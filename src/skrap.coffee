@@ -12,12 +12,17 @@ module.exports = skrap = (recipePath, params, callback) ->
   if recipe.headers?
     headers[header] = value for header, value of recipe.headers
 
-  if params?
-    for key, value of params
-      pattern = new RegExp "\\$\\{#{key}\\}", 'g'
-      url = url.replace pattern, encodeURIComponent(value)
-
-  request.get(url).set(headers).end (error, res) ->
+  if recipe.method is 'POST'
+    myrequest = request.post (url)
+    myrequest.send (params) if params?
+  else
+    if params?
+      for key, value of params
+        pattern = new RegExp "\\$\\{#{key}\\}", 'g'
+        url = url.replace pattern, encodeURIComponent(value)
+    myrequest = request.get (url)
+  
+  myrequest.set(headers).end (error, res) ->
     return callback(error) if error
     $ = cheerio.load(res.text)
     scrap = {}
