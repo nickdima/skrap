@@ -13,7 +13,7 @@ module.exports = skrap = (recipePath, params, callback) ->
     headers[header] = value for header, value of recipe.headers
 
   if recipe.method is 'POST'
-    myrequest = request.post (url)
+    myrequest = request.post (url).type('form')
     myrequest.send (params) if params?
   else
     if params?
