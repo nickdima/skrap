@@ -23,7 +23,6 @@ module.exports = skrap = (recipePath, params, callback) ->
             myparams[key2] = myparams[key2].replace pattern, value
     else if params?
       myparams = params
-    console.log myparams
     myrequest.send(myparams) if myparams?
   else
     if params?
