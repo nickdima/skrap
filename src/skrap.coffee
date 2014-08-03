@@ -14,7 +14,17 @@ module.exports = skrap = (recipePath, params, callback) ->
 
   if recipe.method is 'POST'
     myrequest = request.post(url).type('form')
-    myrequest.send (params) if params?
+    if recipe.params?
+      myparams = recipe.params
+      if params?
+        for key, value of params
+          pattern = new RegExp "\\$\\{#{key}\\}", 'g'
+          for key2, value2 of myparams
+            myparams[key2] = myparams[key2].replace pattern, value
+    else if params?
+      myparams = params
+    console.log myparams
+    myrequest.send(myparams) if myparams?
   else
     if params?
       for key, value of params

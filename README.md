@@ -74,7 +74,7 @@ Here's a more complex example:
                 "group": false,
                 "fields": {
                     "rating": "$('#overview-top .star-box-giga-star').text().trim()",
-                    "duration": "$('#overview-top time').text().trim()"             
+                    "duration": "$('#overview-top time').text().trim()"
                 }
             }
         }
@@ -85,6 +85,8 @@ Here's a more complex example:
 **Optional fields:**
 
 * `headers` - key, value pairs of http headers to be passed when making the requests for the pages to be scraped
+* `method` - the HTTP method to use (Options: GET, POST. Default: GET).
+* `params` - base parameters for POST requests. Each value can contain multiple placeholders just like the url.
 
 **Page crawling**
 
